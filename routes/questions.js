@@ -9,7 +9,6 @@ const router = Router()
 
 router.get('/', questionsCtrl.index)
 
-
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, questionsCtrl.create)
