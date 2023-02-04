@@ -12,7 +12,7 @@ router.get('/', questionsCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/', questionsCtrl.create)
+router.post('/', checkAuth, questionsCtrl.create)
 
 
 export { router }
