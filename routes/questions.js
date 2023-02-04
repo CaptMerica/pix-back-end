@@ -13,6 +13,7 @@ router.get('/:id', questionsCtrl.show)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, questionsCtrl.create)
+router.put('/:id', checkAuth, questionsCtrl.update)
 
 
 
