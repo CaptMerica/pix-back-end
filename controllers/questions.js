@@ -31,8 +31,20 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req,res) => {
+  try {
+    const question = await Question.findById(req.params.id)
+      .populate('owner')
+      .populate('comments.commenter')
+      res.status(200).json(question)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 
 export { 
   create,
-  index
+  index, 
+  show
 }
