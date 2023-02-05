@@ -63,7 +63,7 @@ const deleteQuestion = async (req, res) => {
     profile.questions.remove({ _id: req.params.id})
     await profile.save()
     res.status(200).json(question)
-  } catch {
+  } catch (error) {
     res.status(500).json(error)
   }
 }

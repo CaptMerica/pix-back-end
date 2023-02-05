@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 
 const quoteSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'Profile' },
-  likes: { type: Schema.Types.Array, ref: 'Profile' },
   content: String,
+  likes: { type: Schema.Types.Array, ref: 'Profile' },
 },{
   timestamps: true,
 })
