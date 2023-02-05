@@ -84,15 +84,6 @@ const createComment = async (req, res) => {
 }
 
 
-const editComment = async (req, res) => {
-  try {
-
-  } catch {
-
-  }
-}
-
-
 
 const updateComment = async (req, res) => {
   try {
@@ -110,29 +101,16 @@ const updateComment = async (req, res) => {
   }
 }
 
-
-// const updateComment = async (req, res) => {
-//   try {
-//     const question = await Question.findByIdAndUpdate(req.params.id)
-//     if (comment.commenter.equals(req.user.profile._id)) {
-//           comment.set(req.body)
-//           question.save()
-//           .catch(() => {
-//             res.redirect('/:id')
-//           })
-//           .finally(err => {
-//             console.log(err)
-//             res.redirect('/:id/questions')
-//           })
-//           } else {
-//             throw new Error('Unauthorized')
-//           }
-//         }
-//   } catch (error) {
-//     res.status(500).json(error)
-//   }
-
-
+const deleteComment = async (req, res) => {
+  try {
+    const question = await Question.findById(req.params.questionId)
+    question.comments.remove({_id: req.params.commentId})
+    await question.save()
+    res.status(200).json(question)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 
 export { 
   create,
@@ -141,6 +119,6 @@ export {
   update,
   deleteQuestion as delete,
   createComment,
-  editComment,
-  updateComment
+  updateComment,
+  deleteComment
 }
