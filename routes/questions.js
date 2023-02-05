@@ -14,6 +14,7 @@ router.get('/:id', questionsCtrl.show)
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, questionsCtrl.create)
 router.put('/:id', checkAuth, questionsCtrl.update)
+router.delete('/:id', checkAuth, questionsCtrl.delete)
 
 
 
