@@ -68,10 +68,26 @@ const deleteQuestion = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try {
+    req.body.commentor = req.user.profile
+    const question = await Question.findById(req.params.id)
+    question.comments.push(req.body)
+    await question.save()
+    const newComment = question.comments[question.comments.length - 1]
+    const profile = await Profile.findById(req.user.profile)
+    newComment.commentor = profile
+    res.status(201).json(newComment)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
 export { 
   create,
   index, 
   show,
   update,
-  deleteQuestion as delete
+  deleteQuestion as delete,
+  createComment
 }
