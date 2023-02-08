@@ -84,8 +84,6 @@ const createComment = async (req, res) => {
   }
 }
 
-
-
 const updateComment = async (req, res) => {
   try {
     const question = await Question.findById(req.params.questionId)
