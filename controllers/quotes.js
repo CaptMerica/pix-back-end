@@ -57,11 +57,9 @@ const update = async (req, res) => {
 const deleteQuote = async (req, res) => {
   try {
     const quote = await Quote.findByIdAndDelete(req.params.id)
-    const profile = await Profile.findById(req.user.profile)
-    profile.quotes.remove({ _id: req.params.id})
-    await profile.save()
     res.status(200).json(quote)
   } catch (error) {
+    console.log(error);
     res.status(500).json(error)
   }
 }
