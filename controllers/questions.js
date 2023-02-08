@@ -4,7 +4,7 @@ import { Question } from '../models/question.js'
 
 const create = async (req, res) => {
   try {
-      req.body.author = req.user.profile
+      req.body.owner = req.user.profile
       const question = await Question.create(req.body)
       const profile = await Profile.findByIdAndUpdate(
         req.user.profile,
