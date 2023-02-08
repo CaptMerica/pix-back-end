@@ -4,7 +4,7 @@ import { Question } from '../models/question.js'
 
 const create = async (req, res) => {
   try {
-      req.body.author = req.user.profile
+      req.body.owner = req.user.profile
       const question = await Question.create(req.body)
       const profile = await Profile.findByIdAndUpdate(
         req.user.profile,
@@ -78,12 +78,10 @@ const createComment = async (req, res) => {
     const profile = await Profile.findById(req.user.profile)
     newComment.commenter = profile
     res.status(201).json(newComment)
-  } catch {
+  } catch (error){
     res.status(500).json(error)
   }
 }
-
-
 
 const updateComment = async (req, res) => {
   try {
