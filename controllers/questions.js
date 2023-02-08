@@ -103,6 +103,7 @@ const updateComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   try {
     const question = await Question.findById(req.params.questionId)
+    .populate(['owner', 'comments.commenter'])
     question.comments.remove({_id: req.params.commentId})
     await question.save()
     res.status(200).json(question)
