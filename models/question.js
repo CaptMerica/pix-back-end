@@ -9,7 +9,7 @@ const commentSchema = new Schema({
 })
 
 const questionSchema = new Schema({
-  name: { type:String, required: true },
+  title: { type:String, required: true },
   answered: Boolean,
   content: String,
   comments: [commentSchema],

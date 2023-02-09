@@ -3,6 +3,7 @@ import { Question } from '../models/question.js'
 
 
 const create = async (req, res) => {
+  console.log("THIS IS THE ERROR", req.body);
   try {
       req.body.owner = req.user.profile
       const question = await Question.create(req.body)
